@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Net.Http.Headers;
 using OnlineStore.Api.Data;
 using OnlineStore.Api.Repositories;
 using OnlineStore.Api.Repositories.Contracts;
@@ -18,6 +19,7 @@ builder.Services.AddDbContextPool<OnlineStoreDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("OnlineStoreConnection")    
     ));
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
 var app = builder.Build();
 
@@ -27,6 +29,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseCors(policy =>
+    policy.WithOrigins("https://localhost:7275", "http://localhost:7275")
+    .AllowAnyMethod()
+    .WithHeaders(HeaderNames.ContentType)
+    );
 
 app.UseHttpsRedirection();
 

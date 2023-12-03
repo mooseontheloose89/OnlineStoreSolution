@@ -1,12 +1,15 @@
-﻿using OnlineStore.Models.Dtos;
+﻿using Newtonsoft.Json;
+using OnlineStore.Models.Dtos;
 using OnlineStore.Web.Services.Contracts;
 using System.Net.Http.Json;
+using System.Text;
 
 namespace OnlineStore.Web.Services
 {
     public class ShoppingCartService :IShoppingCartService
     {
         private readonly HttpClient httpClient;
+        public event Action<int> OnShoppingCartChanged;
 
         public ShoppingCartService(HttpClient httpClient) 
         {
@@ -82,6 +85,38 @@ namespace OnlineStore.Web.Services
                     var message = await response.Content.ReadAsStringAsync();
                     throw new Exception($"Http status: {response.StatusCode}, Message: {message}");
                 }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public void RaiseEventOnShoppingCartChanged(int totalQuantity)
+        {
+            if (OnShoppingCartChanged != null)
+            {
+                OnShoppingCartChanged.Invoke(totalQuantity);
+            }
+        }
+
+        public async Task<CartItemDto> UpdateQuantity(CartItemQuantityUpdateDto cartItemQuantityUpdateDto)
+        {
+            try
+            {
+                var jsonRequest = JsonConvert.SerializeObject(cartItemQuantityUpdateDto);
+                var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json-patch+json" );
+
+                var response = await httpClient.PatchAsync($"api/ShoppingCart/{cartItemQuantityUpdateDto.CartItemId}", content );
+
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<CartItemDto>();
+                }
+
+                return null;
+
             }
             catch (Exception)
             {

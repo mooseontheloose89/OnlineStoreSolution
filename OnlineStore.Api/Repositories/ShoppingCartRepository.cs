@@ -85,9 +85,18 @@ namespace OnlineStore.Api.Repositories
                           }).ToListAsync();
         }
 
-        public Task<CartItem> UpdateQuantity(int id, CartItemQuantityUpdateDto quantityUpdateDto)
+        public async Task<CartItem> UpdateQuantity(int id, CartItemQuantityUpdateDto quantityUpdateDto)
         {
-            throw new NotImplementedException();
+            var item = await this.onlineStoreDbContext.CartItems.FindAsync(id);
+
+            if (item != null)
+            {
+                item.Quantity = quantityUpdateDto.Quantity;
+                await this.onlineStoreDbContext.SaveChangesAsync();
+                return item;
+            }
+
+            return null;
         }
     }
 }

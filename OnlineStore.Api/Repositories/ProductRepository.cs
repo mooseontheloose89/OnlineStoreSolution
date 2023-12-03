@@ -36,5 +36,16 @@ namespace OnlineStore.Api.Repositories
             var products = await this.onlineStoreDbContext.Products.ToListAsync();
             return products;
         }
+
+        public async Task<IEnumerable<Product>> GetItemsByCategory(int id)
+        {
+            var products = await (from product in onlineStoreDbContext.Products
+                                  where product.CategoryId == id
+                                  select product).ToListAsync();
+            //var products = await this.onlineStoreDbContext.Products
+            //                         .Include(p => p.ProductCategory)
+            //                         .Where(p => p.CategoryId == id).ToListAsync();
+            return products;
+        }
     }
 }

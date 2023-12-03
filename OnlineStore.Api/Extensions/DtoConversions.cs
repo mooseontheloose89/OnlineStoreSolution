@@ -73,5 +73,16 @@ namespace OnlineStore.Api.Extensions
                 TotalPrice = product.Price * cartItem.Quantity
             };
         }
+
+        public static IEnumerable<ProductCategoryDto> ConvertToDto(this IEnumerable<ProductCategory> productCategories)
+        {
+            return (from productCategory in productCategories
+                    select new ProductCategoryDto
+                    {
+                        Id = productCategory.Id,
+                        Name = productCategory.Name,
+                        IconCSS = productCategory.IconCSS
+                    }).ToList();
+        }
     }
 }

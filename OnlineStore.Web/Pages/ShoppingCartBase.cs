@@ -13,6 +13,8 @@ namespace OnlineStore.Web.Pages
 
         [Inject]
         public IShoppingCartService ShoppingCartService { get; set; }
+        [Inject]
+        public IManageCartItemsLocalStorageService manageCartItemsLocalStorageService { get; set; }
 
         public List<CartItemDto> ShoppingCartItems { get; set; }
 
@@ -25,7 +27,7 @@ namespace OnlineStore.Web.Pages
         {
             try
             {
-                ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
+                ShoppingCartItems = await manageCartItemsLocalStorageService.GetCollection();
 
                 CartChanged();
             }
@@ -59,7 +61,7 @@ namespace OnlineStore.Web.Pages
 
                     var returnedUpdateItemDto = await this.ShoppingCartService.UpdateQuantity(updateItemDto);
 
-                    UpdateItemTotalPrice(returnedUpdateItemDto);
+                    await UpdateItemTotalPrice(returnedUpdateItemDto);
 
                     CartChanged();
 
@@ -99,7 +101,7 @@ namespace OnlineStore.Web.Pages
             SetTotalQuantity();
         }
 
-        private void UpdateItemTotalPrice(CartItemDto cartItemDto)
+        private async Task UpdateItemTotalPrice(CartItemDto cartItemDto)
         {
             var item = GetCartItem(cartItemDto.Id);
 
@@ -107,6 +109,8 @@ namespace OnlineStore.Web.Pages
             {
                 item.TotalPrice = cartItemDto.Price * cartItemDto.Quantity;
             }
+
+            await manageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
         }
 
         private void SetTotalPrice()
@@ -124,11 +128,13 @@ namespace OnlineStore.Web.Pages
             return ShoppingCartItems.FirstOrDefault(i => i.Id == id);
         }
 
-        private void RemoveCartItem(int id)
+        private async Task RemoveCartItem(int id)
         {
             var cartItemDto = GetCartItem(id);
 
             ShoppingCartItems.Remove(cartItemDto);
+
+            await manageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
         }
 
         private void CartChanged()

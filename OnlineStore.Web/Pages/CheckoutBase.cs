@@ -18,12 +18,14 @@ namespace OnlineStore.Web.Pages
 
         [Inject]
         public IShoppingCartService ShoppingCartService { get; set; }
+        [Inject]
+        public IManageCartItemsLocalStorageService manageCartItemsLocalStorageService { get; set; }
 
         protected override async Task OnInitializedAsync()
         {
             try
             {
-                ShoppingCartItems = await ShoppingCartService.GetItems(HardCoded.UserId);
+                ShoppingCartItems = await manageCartItemsLocalStorageService.GetCollection();
 
                 if (ShoppingCartItems != null)
                 {

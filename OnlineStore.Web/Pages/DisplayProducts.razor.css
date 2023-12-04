@@ -19,3 +19,30 @@ a:hover img {
 img {
     transition: 0.5s ease-in-out;
 }
+
+.out-of-stock {
+    
+}
+
+.out-of-stock .card {
+position: relative;
+}
+
+.out-of-stock .card::after {
+    content: "Out of Stock";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 5px;
+}
+
+
+.translucent {
+    opacity: 0.5;
+    pointer-events: none; 
+}
+

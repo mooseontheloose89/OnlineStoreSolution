@@ -2,19 +2,30 @@
 
 @foreach (var item in Products)
 {
-<div class="col-md-3 mb-2">
-    <a href="/ProductDetails/@item.Id">
-        <div class="card">
-            <img class="img-thumbnail" src="@item.ImageURL">
-            <div class="card-body">
-                <h5 class="card-title mb-3">
-                    @item.Name
-                </h5>
-                <p class="card-text">
-                    <b>@item.Price.ToString("C")</b>
-                </p>
+    <div class="col-md-3 mb-2">
+        @if (item.Quantity > 0)
+        {
+            <a href="/ProductDetails/@item.Id">
+                <div class="card">
+                    <img class="img-thumbnail" src="@item.ImageURL">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3">@item.Name</h5>
+                        <p class="card-text"><b>@item.Price.ToString("C")</b></p>
+                    </div>
+                </div>
+            </a>
+        }
+        else
+        {
+            <div class="card out-of-stock">
+                <img class="img-thumbnail translucent" src="@item.ImageURL">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">@item.Name</h5>
+                    <p class="card-text"><b>@item.Price.ToString("C")</b></p>
+                    <p class="text-muted">Out of Stock</p>
+                </div>
             </div>
-        </div>
-    </a>
-</div>
+        }
+    </div>
 }
+

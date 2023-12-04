@@ -73,7 +73,7 @@ namespace OnlineStore.Web.Pages
 
                     if (item != null)
                     {
-                        item.Quantity = 1;
+                        item.PurchaseQuantity = 1;
                         item.TotalPrice = item.Price;
                     }
                 }
@@ -107,7 +107,7 @@ namespace OnlineStore.Web.Pages
 
             if (item != null)
             {
-                item.TotalPrice = cartItemDto.Price * cartItemDto.Quantity;
+                item.TotalPrice = cartItemDto.Price * cartItemDto.PurchaseQuantity;
             }
 
             await manageCartItemsLocalStorageService.SaveCollection(ShoppingCartItems);
@@ -120,7 +120,7 @@ namespace OnlineStore.Web.Pages
 
         private void SetTotalQuantity()
         {
-            TotalQuantity = this.ShoppingCartItems.Sum(p => p.Quantity);
+            TotalQuantity = this.ShoppingCartItems.Sum(p => p.PurchaseQuantity);
         }
 
         private CartItemDto GetCartItem(int id)

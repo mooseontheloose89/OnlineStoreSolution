@@ -31,7 +31,7 @@ namespace OnlineStore.Web.Pages
                 {
                     Guid orderGuid = Guid.NewGuid();
                     PaymentAmount = ShoppingCartItems.Sum(p => p.TotalPrice);
-                    TotalQuantity = ShoppingCartItems.Sum(p => p.Quantity);
+                    TotalQuantity = ShoppingCartItems.Sum(p => p.PurchaseQuantity);
                     PaymentDescription = $"Order_{HardCoded.UserId}_{orderGuid}";
                 }
             }

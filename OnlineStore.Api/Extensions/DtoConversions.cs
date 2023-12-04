@@ -51,7 +51,7 @@ namespace OnlineStore.Api.Extensions
                     ProductImageURL = product.ImageURL,
                     Price = product.Price,
                     CartId = cartItem.CartId,
-                    Quantity = product.Quantity,
+                    PurchaseQuantity = cartItem.Quantity,
                     TotalPrice = product.Price * cartItem.Quantity
                 }).ToList();
         }
@@ -67,7 +67,7 @@ namespace OnlineStore.Api.Extensions
                 ProductImageURL = product.ImageURL,
                 Price = product.Price,
                 CartId = cartItem.CartId,
-                Quantity = product.Quantity,
+                PurchaseQuantity = cartItem.Quantity,
                 TotalPrice = product.Price * cartItem.Quantity
             };
         }

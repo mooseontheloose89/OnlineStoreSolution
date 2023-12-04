@@ -35,7 +35,7 @@ else
                         @foreach (var item in ShoppingCartItems)
                         {
                             <tr>
-                                <td>@item.Quantity x @item.ProductName</td>
+                                <td>@item.PurchaseQuantity x @item.ProductName</td>
                                 <td>@item.TotalPrice.ToString("C")</td>
                             </tr>
                         }

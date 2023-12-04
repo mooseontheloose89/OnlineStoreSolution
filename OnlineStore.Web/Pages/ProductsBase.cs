@@ -27,7 +27,7 @@ namespace OnlineStore.Web.Pages
                 Products = await manageProductsLocalStorageService.GetCollection();
 
                 var shoppingCartItems = await manageCartItemsLocalStorageService.GetCollection();
-                var totalQuantity = shoppingCartItems.Sum(i => i.Quantity);
+                var totalQuantity = shoppingCartItems.Sum(i => i.PurchaseQuantity);
 
                 ShoppingCartService.RaiseEventOnShoppingCartChanged(totalQuantity);
 

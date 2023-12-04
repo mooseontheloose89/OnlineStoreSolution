@@ -21,26 +21,29 @@ namespace OnlineStore.Api.Repositories
         }
         public async Task<CartItem> AddItem(CartItemToAddDto cartItemToAddDto)
         {
-            if (await CartItemsExists(cartItemToAddDto.CartId, cartItemToAddDto.ProductId) == false) 
-            {
-                var item = await (from product in this.onlineStoreDbContext.Products
-                                  where product.Id == cartItemToAddDto.ProductId
-                                  select new CartItem
-                                  {
-                                      CartId = cartItemToAddDto.CartId,
-                                      ProductId = cartItemToAddDto.ProductId,
-                                      Quantity = cartItemToAddDto.Quantity
-                                  }).SingleOrDefaultAsync();
-                if (item != null)
-                {
-                    var result = await this.onlineStoreDbContext.CartItems.AddAsync(item);
-                    await this.onlineStoreDbContext.SaveChangesAsync();
-                    return result.Entity;
+            if (await CartItemsExists(cartItemToAddDto.CartId, cartItemToAddDto.ProductId) == false)
+            {                
+                var productExists = await this.onlineStoreDbContext.Products.AnyAsync(p => p.Id == cartItemToAddDto.ProductId);
+                if (!productExists)
+                {                    
+                    return null;
                 }
+
+                var newItem = new CartItem
+                {
+                    CartId = cartItemToAddDto.CartId,
+                    ProductId = cartItemToAddDto.ProductId,
+                    Quantity = cartItemToAddDto.Quantity
+                };
+
+                var result = await this.onlineStoreDbContext.CartItems.AddAsync(newItem);
+                await this.onlineStoreDbContext.SaveChangesAsync();
+                return result.Entity;
             }
-            
+
             return null;
         }
+
 
         public async Task<CartItem> DeleteItem(int id)
         {

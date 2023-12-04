@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Logging;
 using OnlineStore.Models.Dtos;
 using OnlineStore.Web.Services.Contracts;
 
@@ -20,6 +21,8 @@ namespace OnlineStore.Web.Pages
         public IManageProductsLocalStorageService manageProductsLocalStorageService { get; set; }
         [Inject]
         public NavigationManager NavigationManager { get; set; }
+        [Inject]
+        public ILogger<ProductDetailsBase> Logger { get; set; }
 
         public ProductDto Product { get; set; }
         public string ErrorMessage { get; set; }
@@ -35,7 +38,7 @@ namespace OnlineStore.Web.Pages
             }
             catch (Exception ex)
             {
-
+                Logger.LogError(ex, "Error occurred while initializing product details: {Message}", ex.Message);
                 ErrorMessage = ex.Message;
             }
         }
@@ -54,10 +57,11 @@ namespace OnlineStore.Web.Pages
 
                 NavigationManager.NavigateTo("/ShoppingCart");
             }
-            catch (Exception)
+            catch (Exception ex )
             {
-
-                throw;
+                Logger.LogError(ex, "Error adding item to cart: {Message}", ex.Message);                
+                ErrorMessage = "An error occurred while adding the item to the cart. Please try again.";
+                StateHasChanged();
             }
         }
 

@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using OnlineStore.Api.Data;
 
@@ -10,9 +11,11 @@ using OnlineStore.Api.Data;
 namespace OnlineStore.Api.Migrations
 {
     [DbContext(typeof(OnlineStoreDbContext))]
-    partial class OnlineStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231205020210_ProductsMigration2")]
+    partial class ProductsMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -113,7 +116,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 1,
                             CategoryId = 1,
                             Description = "194 Colors Cosmetic Make up Palette Set Kit with Eyeshadow Blusher Eyebrow Powder Face Concealer,All-in-One High Pigment Powder Pallet Kit with Mirror, Applicators",
-                            ImageURL = "/Images/Beauty/Beauty1.png",
+                            ImageURL = "/Images/Beauty/Beauty-MakeupPalette.png",
                             Name = "Cosmetic Make up palette",
                             Price = 23.99m,
                             Quantity = 125
@@ -123,7 +126,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 2,
                             CategoryId = 1,
                             Description = "Bronzing powder that gives your skin a natural sunkissed look",
-                            ImageURL = "/Images/Beauty/Beauty2.png",
+                            ImageURL = "/Images/Beauty/Beauty-RimmelBronzer.png",
                             Name = "Rimmel London Natural Bronzer",
                             Price = 5.97m,
                             Quantity = 250
@@ -133,7 +136,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 3,
                             CategoryId = 1,
                             Description = "BEAKEY Diversity Makeup Brushes 12 Pcs Makeup Kit, Premium Synthetic Kabuki Foundation Face Powder Concealers Eyeshadow Blush Brushes Makeup Brush Set, with 2pcs Blender Sponges (Black/Silver)",
-                            ImageURL = "/Images/Beauty/Beauty3.png",
+                            ImageURL = "/Images/Beauty/Beauty-BeakeyBrushSet.png",
                             Name = "BEAKEY Diversity Makeup Brushes 12 Pcs Makeup Kit",
                             Price = 6.78m,
                             Quantity = 175
@@ -143,7 +146,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 4,
                             CategoryId = 1,
                             Description = "Very black volume mascara with curved silicone brush that has 6 different size bristles for an enhanced look Fan effect, No clumping, No smudging for extra-black volume even on the thinnest lashes. Place the brush at the base of your lashes and slightly twist upward to coat them;",
-                            ImageURL = "/Images/Beauty/Beauty4.png",
+                            ImageURL = "/Images/Beauty/Beauty-MaybellineMascara.png",
                             Name = "Maybelline New York, Volume Mascara, Lash Sensational, Colour: Very Black, 9.5 mL",
                             Price = 7.07m,
                             Quantity = 280
@@ -153,7 +156,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 5,
                             CategoryId = 1,
                             Description = "AOOWU Glitter Powder Spray, Shiny Body Glitter Spray for Women, Highlighter Loose Powder Spray, Shimmer Sparkle Pearl Powder Makeup Spray for Body, Hair, Face and Clothing, Colorful White",
-                            ImageURL = "/Images/Beauty/Beauty5.png",
+                            ImageURL = "/Images/Beauty/Beauty-GlitterSpray.png",
                             Name = "Glitter Powder Spray",
                             Price = 6.29m,
                             Quantity = 147
@@ -163,7 +166,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 6,
                             CategoryId = 2,
                             Description = "A sturdy single plant pot perfect for your latest gardening venture",
-                            ImageURL = "/Images/Garden/Garden1.png",
+                            ImageURL = "/Images/Garden/Garden-PlantPot.png",
                             Name = "Single Plant Pot",
                             Price = 12.0m,
                             Quantity = 45
@@ -173,7 +176,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 7,
                             CategoryId = 2,
                             Description = "The perfect birthday present for anyone who loves gardening.",
-                            ImageURL = "/Images/Garden/Garden2.png",
+                            ImageURL = "/Images/Garden/Garden-ToolSet.png",
                             Name = "Multiple tool gardening set",
                             Price = 35.54m,
                             Quantity = 95
@@ -183,7 +186,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 8,
                             CategoryId = 2,
                             Description = "A single garden trowel",
-                            ImageURL = "/Images/Garden/Garden3.png",
+                            ImageURL = "/Images/Garden/Garden-Trowel.png",
                             Name = "Garden Trowel",
                             Price = 4.99m,
                             Quantity = 23
@@ -193,7 +196,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 9,
                             CategoryId = 2,
                             Description = "The perfect watering can comes in the colour of yellow.",
-                            ImageURL = "/Images/Garden/Garden4.png",
+                            ImageURL = "/Images/Garden/Garden-WateringCan.png",
                             Name = "Watering Can",
                             Price = 14.99m,
                             Quantity = 19
@@ -203,7 +206,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 10,
                             CategoryId = 2,
                             Description = "Footwear for a rainy day and for puddle splashing.",
-                            ImageURL = "/Images/Garden/Garden5.png",
+                            ImageURL = "/Images/Garden/Garden-WellingtonBoots.png",
                             Name = "Wellington Boots",
                             Price = 65.0m,
                             Quantity = 10
@@ -213,7 +216,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 11,
                             CategoryId = 3,
                             Description = "Airpods the perfect in ear wireless headphones.",
-                            ImageURL = "/Images/Electronics/Electronic1.png",
+                            ImageURL = "/Images/Electronics/Headphones-AppleAirpods.png",
                             Name = "Apple Airpods (3rd Generation)",
                             Price = 159.0m,
                             Quantity = 25
@@ -223,7 +226,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 12,
                             CategoryId = 3,
                             Description = "SteelSeries multi system wireless headset.",
-                            ImageURL = "/Images/Electronics/Electronic2.png",
+                            ImageURL = "/Images/Electronics/Headphones-SteelSeriesArctis.png",
                             Name = "SteelSeries Arctis Nova 7",
                             Price = 129.0m,
                             Quantity = 45
@@ -233,7 +236,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 13,
                             CategoryId = 3,
                             Description = "Razer BlackShark V2 Pro wireless premium gaming headset.",
-                            ImageURL = "/Images/Electronics/Electronic3.png",
+                            ImageURL = "/Images/Electronics/Headphones-RazerBlackShark.png",
                             Name = "Razer BlackShark V2 Pro",
                             Price = 147.44m,
                             Quantity = 75
@@ -243,7 +246,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 14,
                             CategoryId = 3,
                             Description = "Duracell batteries with reliability for everyday devices.",
-                            ImageURL = "/Images/Electronics/Electronic4.png",
+                            ImageURL = "/Images/Electronics/Battery-DuracellPlusAA.png",
                             Name = "Duracell Plus AA Batteries (24 pack)",
                             Price = 20.0m,
                             Quantity = 100
@@ -253,7 +256,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 15,
                             CategoryId = 3,
                             Description = "Fitbit by Google, 7 days battery life.",
-                            ImageURL = "/Images/Electronics/Electronic5.png",
+                            ImageURL = "/Images/Electronics/Watch-Fitbit.png",
                             Name = "Fitbit",
                             Price = 139.0m,
                             Quantity = 40
@@ -263,7 +266,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 16,
                             CategoryId = 4,
                             Description = "Kitten heels are here to stay so stay on trend with our Millionaire slingback courts. This versatile style can be dressed up or down, with the adjustable sling back straps making them comfortable enough to take you from the office to the dancefloor.",
-                            ImageURL = "/Images/Shoes/Shoes1.png",
+                            ImageURL = "/Images/Shoes/Shoes-KittenHeels.png",
                             Name = "Millionaire Point Court Kitten Heels",
                             Price = 39.99m,
                             Quantity = 36
@@ -273,7 +276,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 17,
                             CategoryId = 4,
                             Description = "The classic Boston clog by BIRKENSTOCK, designed to wear all year round. The adaptable strap and strong metal buckle, along with foam layered soft footbed make these clogs comfortable for all foot types. With Suede lining and upper and Birko-Flor®, a flawless imitation of real nubuck. This pair has a narrow fit.",
-                            ImageURL = "/Images/Shoes/Shoes2.png",
+                            ImageURL = "/Images/Shoes/Shoes-BirkenstockClogs.png",
                             Name = "BIRKENSTOCK Boston Clogs",
                             Price = 115.0m,
                             Quantity = 47
@@ -283,7 +286,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 18,
                             CategoryId = 4,
                             Description = "Office Monroe derby shoes perfect for smart occasions.",
-                            ImageURL = "/Images/Shoes/Shoes3.png",
+                            ImageURL = "/Images/Shoes/Shoes-MonroeDerby.png",
                             Name = "Monroe Derby Shoes",
                             Price = 44.99m,
                             Quantity = 58
@@ -293,7 +296,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 19,
                             CategoryId = 4,
                             Description = "Bronx Daff Buckle Knee High Boots made out of leather and with a rubber sole.",
-                            ImageURL = "/Images/Shoes/Shoes4.png",
+                            ImageURL = "/Images/Shoes/Shoes-Bronx.png",
                             Name = "Bronx Daff Buckle Knee High Boots",
                             Price = 160.0m,
                             Quantity = 25
@@ -303,7 +306,7 @@ namespace OnlineStore.Api.Migrations
                             Id = 20,
                             CategoryId = 4,
                             Description = "Vagabond Shoemakers Kenova Stretch Boots, comfy pull on fit and with a synthetic sole.",
-                            ImageURL = "/Images/Shoes/Shoes5.png",
+                            ImageURL = "/Images/Shoes/Shoes-Vagabond.png",
                             Name = "Vagabond Shoemakers Kenova Stretch Boots",
                             Price = 165.0m,
                             Quantity = 15
